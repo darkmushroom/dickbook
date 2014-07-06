@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  email: MyString
-  password_hash: MyString
-  password_salt: MyString
+bob:
+  email: "whiskey.bob@Canada.com"
+  password_hash: "$2a$10$JRTKTNuXTDps9GPbe8wBje7xQfdWU4At0KlCepxzKTTYKWdGF4/wq"
+  password_salt: "$2a$10$JRTKTNuXTDps9GPbe8wBje"
 
-two:
-  email: MyString
-  password_hash: MyString
-  password_salt: MyString
+penny:
+  email: "rainbows@sparkles.com"
+  password_hash: "$2a$10$JhfrHhMrLbypqk68/R9E7Ognol8UFm2AIrKoKgaC1iza5Q4KjNnP."
+  password_salt: "$2a$10$JhfrHhMrLbypqk68/R9E7O"

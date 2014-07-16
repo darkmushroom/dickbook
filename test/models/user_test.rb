@@ -10,6 +10,17 @@ class UserTest < ActiveSupport::TestCase
     user.password = "OhPrettyGoodPasswordEh?"
     user.encrypt_password
 
-    assert_equal "$2a$10$JRTKTNuXTDps9GPbe8wBje7xQfdWU4At0KlCepxzKTTYKWdGF4/wq", user.password_hash
+    assert user.password_hash
     assert user.password_salt
+  end
+
+  test "#authenticate authenticates user credentials" do
+    user = User.authenticate("whiskey.bob@Canada.com", "OhPrettyGoodPasswordEh?")
+    assert_equal @user, user
+  end
+
+  test "#authenticate returns nil when credentials are invalid" do
+    user = User.authenticate("whiskey.bob@Canada.com", "HeyHowBootSomeHockey?")
+    assert_nil user
+  end
 end

@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
-  
-  before_action :require_login
-  
+
+#  Will check if the user is logged in a different controller...
+#  before_filter :require_login, :except => [:new]
+
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
@@ -23,10 +24,9 @@ class SessionsController < ApplicationController
   private
 
   def require_login
-    unless logged_in? || log_in_path
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to root_url #halts the request cycle
-    end
+    return if logged_in?
+    flash[:error] = "You must be logged in to access this section"
+    redirect_to root_url #halts the request cycle
   end
 
 end

@@ -13,8 +13,9 @@
     Logged in as <%= current_user.email %>
     <%= button_to "Sign out", logout_path, method: :post %>
   <% else %>
+    <p>Not logged in</p>
     <%= link_to "Sign up", new_user_url %> or
-    <%= link_to "Log in", new_session_url %>
+    <%= link_to "Log in", login_url %>
   <% end %>
 </div>
 

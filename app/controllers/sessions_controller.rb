@@ -1,13 +1,13 @@
-class SessionsController < ApplicationController
+class SessionsController < ActionController::Base
+  before_filter :require_login, except: [:new, :create]
 
-#  Will check if the user is logged in a different controller...
-#  before_filter :require_login, :except => [:new]
+  helper_method :current_user
 
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to root_url, :notice => "Logged in!"
+      redirect_to home_url
     else
       flash.now.alert = "Invalid email or password"
       render "new"
@@ -15,10 +15,16 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    @user = nil
-    @current_user = nil
-    redirect_to sign_up_path , :notice => "Logged out!"
+    reset_session
+    redirect_to root_url , :notice => "Logged out!"
+  end
+
+  def logged_in?
+    !!current_user
+  end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   private
@@ -26,7 +32,6 @@ class SessionsController < ApplicationController
   def require_login
     return if logged_in?
     flash[:error] = "You must be logged in to access this section"
-    redirect_to root_url #halts the request cycle
+    redirect_to root_url
   end
-
 end

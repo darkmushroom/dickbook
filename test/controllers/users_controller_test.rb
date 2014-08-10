@@ -10,4 +10,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
+  test "#new should render and display a signup form" do
+    get :new
+    assert_response :success
+    assert css_select(".signup_form").first
+  end
 end

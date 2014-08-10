@@ -1,4 +1,6 @@
-class UsersController < ApplicationController
+class UsersController < SessionsController
+  before_filter :require_login, except: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -12,7 +14,8 @@ class UsersController < ApplicationController
     end
   end
 
-private
+  private
+
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end

@@ -11,6 +11,8 @@ class UserTest < ActiveSupport::TestCase
     user.encrypt_password
 
     assert user.password_hash
+    assert 60, user.password_hash.length
+    assert "$2a$10$", user.password_hash[0..7]
     assert user.password_salt
   end
 

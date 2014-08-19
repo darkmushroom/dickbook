@@ -1,3 +1,11 @@
 <p>Welcome to Dickbook</p>
 
 <%= button_to "Create Board", create_board_path, method: :post %>
+<% if @boards %>
+  <% @boards.each do |board| %>
+  Owner: <%= board.owner %><br />
+  Title: <%= board.title %><br /><br />
+  <% end %>
+<% else %>
+  No boards to display. Create one!
+<% end %>

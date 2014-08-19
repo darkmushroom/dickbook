@@ -6,8 +6,17 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
-    @board.save
-    render "new"
+    @board.owner = current_user.email
+    @board.user_id = current_user.id
+    if @board.save
+      redirect_to home_url
+    else
+      flash.now.alert = "Invalid Article!"
+    end
+  end
+  
+  def show
+    @boards = @current_user.boards
   end
 
   private

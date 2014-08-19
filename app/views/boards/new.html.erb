@@ -1,4 +1,9 @@
-<h1>Boards go here but I'm buzzed so I'll just commit and work more in the morning</h1>
+<h1>New Board</h1>
 
-<%= form_tag boards_path do %>
+<%= form_for @board, html: {class: "signup_form"}  do |f| %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+
+    <p class="button"><%= f.submit %></p>
 <% end %>

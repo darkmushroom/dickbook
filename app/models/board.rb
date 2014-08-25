@@ -1,7 +1,5 @@
 class Board < ActiveRecord::Base
-  has_one :user
-  
-  validates_presence_of :owner
+  belongs_to :user
   validates_presence_of :title
-  validates_presence_of :user_id
+  validates_presence_of :user
 end

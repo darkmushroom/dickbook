@@ -3,7 +3,7 @@
 <%= button_to "Create Board", create_board_path, method: :post %>
 <% if @boards %>
   <% @boards.each do |board| %>
-  Owner: <%= board.owner %><br />
+  Owner: <%= board.user.email %><br />
   Title: <%= board.title %><br /><br />
   <% end %>
 <% else %>

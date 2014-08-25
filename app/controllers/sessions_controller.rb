@@ -9,14 +9,14 @@ class SessionsController < ActionController::Base
       session[:user_id] = user.id
       redirect_to home_url
     else
-      flash.now.alert = "Invalid email or password"
-      render "new"
+      flash.now.alert = 'Invalid email or password'
+      render 'new'
     end
   end
 
   def destroy
     reset_session
-    redirect_to root_url , :notice => "Logged out!"
+    redirect_to root_url, notice: 'Logged out!'
   end
 
   def logged_in?
@@ -31,7 +31,7 @@ class SessionsController < ActionController::Base
 
   def require_login
     return if logged_in?
-    flash[:error] = "You must be logged in to access this section"
+    flash[:error] = 'You must be logged in to access this section'
     redirect_to root_url
   end
 end

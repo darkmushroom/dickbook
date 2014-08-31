@@ -5,6 +5,7 @@ class SessionsController < ActionController::Base
 
   def create
     user = User.authenticate(params[:email], params[:password])
+#    byebug
     if user
       session[:user_id] = user.id
       redirect_to home_url

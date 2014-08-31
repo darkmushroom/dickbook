@@ -1,6 +1,6 @@
 <p>Welcome to Dickbook</p>
 
-<%= button_to "Create Board", create_board_path, method: :post %>
+<%= button_to "Create Board", create_board_path, method: :get %>
 <% if @boards %>
   <% @boards.each do |board| %>
   Owner: <%= board.user.email %><br />

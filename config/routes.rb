@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :sessions
   match "home", to: "home#show", via: [:get, :post], as: "home"
   resources :home
-  match "create_board", to: "boards#new", via: [:post, :get]
+  match "create_board", to: "boards#new", via: [:get]
   resources :boards
 end
